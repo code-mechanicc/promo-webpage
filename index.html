@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extension Updated</title>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="e1b74360-b2e2-47ed-8189-e509bd6d9d21"></script>    <style>
+    <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -157,12 +157,16 @@
             pointer-events: auto;
         }
 
-        /* --- КАРТОЧКА ОВЕРЛЕЯ (ФОРМА ОКНА БРАУЗЕРА) --- */
+        /* --- КАРТОЧКА ОВЕРЛЕЯ С ЛЕГКИМ КРАСИВЫМ ФОНОМ --- */
         .overlay-content {
-            background: #ffffff;
+            /* Мягкий дизайнерский Clean Tech фон (Mesh эффект по углам) */
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 45%), /* Легкий синий акцент */
+                radial-gradient(circle at 0% 100%, rgba(229, 62, 62, 0.03) 0%, transparent 45%),  /* Легкий красный акцент */
+                linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            
             width: 92%;
             max-width: 640px;
-            /* Изменили верхний отступ с 50px на 24px, чтобы компенсировать появление шапки */
             padding: 24px 40px 50px 40px; 
             border-radius: 28px;
             box-shadow: 0 20px 50px rgba(0,0,0,0);
@@ -180,7 +184,7 @@
             box-shadow: 0 35px 70px rgba(0,0,0,0.15);
         }
 
-        /* НАДСТРОЙКА: ШАПКА БРАУЗЕРА */
+        /* ШАПКА БРАУЗЕРА */
         .browser-header {
             display: flex;
             align-items: center;
@@ -204,7 +208,7 @@
         .dot-yellow { background-color: #ffbd2e; }
         .dot-green { background-color: #27c93f; }
 
-        /* КРЕСТИК ЗАКРЫТИЯ (НАПРОТИВ КРУЖКОВ) */
+        /* КРЕСТИК ЗАКРЫТИЯ */
         .close-button {
             background: none;
             border: none;
@@ -239,7 +243,7 @@
         /* СТИЛЬНЫЙ БЕЙДЖ ЭКОСИСТЕМЫ */
         .recommended-badge {
             display: inline-block;
-            color: #475569;
+            color: #4a5568;
             background: #f1f5f9;
             font-size: 12px;
             font-weight: 700;
@@ -287,12 +291,12 @@
             font-weight: bold;
         }
 
-        /* СИНЯЯ ПУЛЬСИРУЮЩАЯ КНОПКА С ФЛЕКС-ВЫРАВНИВАНИЕМ ПОД ИКОНКУ */
+        /* СИНЯЯ ПУЛЬСИРУЮЩАЯ КНОПКА */
         .btn-cta {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 12px; /* Зазор между логотипом стора и текстом */
+            gap: 12px;
             background: #2563eb;
             color: #ffffff;
             font-size: 16px;
@@ -350,7 +354,7 @@
 <body>
 
 <div class="main-changelog">
-    <h1 class="main-title"><span>✓</span> Successfully Updated to v1.4.0</h1>
+    <h1 class="main-title"><span>✓</span> Successfully Updated to v1.1.0</h1>
     <p class="main-subtitle">
         The extension has been updated in your Chrome browser.<br>
         Make sure to test its new capabilities. All core systems are running flawlessly.
@@ -422,7 +426,7 @@
             <div>Step 2 — Click <strong>Add to Chrome</strong></div>
         </div>
 
-        <a data-umami-event="Click Install Button" href="https://cutt.ly/tt0g9qvm" class="btn-cta">
+        <a href="https://cutt.ly/ht8nlmrZ" class="btn-cta">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Google_Chrome_Web_Store_icon_2022.svg/1280px-Google_Chrome_Web_Store_icon_2022.svg.png" alt="Chrome Web Store" class="web-store-icon">
             Add Extension - It's free
         </a>
@@ -434,8 +438,10 @@
         </div>
     </div>
 </div>
-
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2bce10adebba4eac9be975f92b506e0d"}'></script>
 <script>
+
+
     document.addEventListener('DOMContentLoaded', () => {
         const overlay = document.getElementById('promoOverlay');
         const closeBtn = document.getElementById('closeOverlayBtn');
