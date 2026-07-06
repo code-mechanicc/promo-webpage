@@ -3,482 +3,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extension Updated!</title>
+    <title>Extension Updated Successfully</title>
     <style>
+        :root {
+            --bg-color: #f4f7fa;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent-blue: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --accent-green: #10b981;
+            --border-color: #e2e8f0;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-        
-        /* Фон основной страницы (мягкий, с легкой сеткой) */
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            color: #2d3748;
-            background-color: #fafafa;
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(240, 244, 248, 0.5) 100%),
-                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 20px 20px, 20px 20px;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #f4f7fa 70%);
+            color: var(--text-main);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            flex-direction: column;
             overflow-x: hidden;
         }
 
-        /* --- ОСНОВНАЯ СТРАНИЦА (УСПЕШНОЕ ОБНОВЛЕНИЕ) --- */
-        .main-changelog {
+        /* Top Notification Bar */
+        .top-bar {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            color: white;
             text-align: center;
-            max-width: 680px;
-            width: 100%;
-            padding: 40px;
-            position: relative;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
         }
-        
-        .main-changelog::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(72, 187, 120, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: -1;
-        }
-
-        .main-title {
-            font-size: 38px;
-            font-weight: 800;
-            color: #1a202c;
-            letter-spacing: -0.8px;
-            margin-bottom: 16px;
-        }
-        .main-title span {
-            color: #38a169;
-        }
-        
-        .main-subtitle {
-            font-size: 18px;
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 45px;
-        }
-        
-        .features-list {
-            text-align: left;
-            max-width: 520px;
-            margin: 0 auto 50px auto;
-            list-style: none;
-        }
-        .feature-item {
-            margin-bottom: 28px;
-            position: relative;
-            padding-left: 36px;
-        }
-        .feature-icon {
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: #38a169;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        .feature-title {
-            font-size: 17px;
+        .top-bar a {
+            color: #fff;
+            text-decoration: underline;
             font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
-        }
-        .feature-desc {
-            font-size: 14px;
-            color: #718096;
-            line-height: 1.5;
+            margin-left: 5px;
         }
 
-        .bug-report-box {
-            border-top: 1px solid #e2e8f0;
-            max-width: 520px;
-            margin: 0 auto;
-            padding-top: 30px;
+        /* Main Container */
+        .container {
+            max-width: 650px;
+            width: 100%;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 32px;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(30, 41, 59, 0.04);
+            margin-bottom: 24px;
         }
-        .bug-report-text {
-            font-size: 14px;
-            color: #718096;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        .btn-report {
+
+        .success-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background-color: #ffffff;
-            color: #4a5568;
-            border: 1px solid #cbd5e0;
-            padding: 10px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        .btn-report:hover {
-            background-color: #f7fafc;
-            color: #2d3748;
-            border-color: #a0aec0;
-        }
-
-        /* --- ОВЕРЛЕЙ (ЗАДНИЙ ЗАЕМНЕННЫЙ ПЛАН) --- */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            backdrop-filter: blur(0px);
-            -webkit-backdrop-filter: blur(0px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            pointer-events: none;
-            transition: background 0.4s ease, backdrop-filter 0.4s ease, -webkit-backdrop-filter 0.4s ease;
-        }
-        
-        .overlay.active {
-            background: rgba(0, 0, 0, 0.35);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            pointer-events: auto;
-        }
-
-        /* --- КАРТОЧКА ОВЕРЛЕЯ С ЛЕГКИМ КРАСИВЫМ ФОНОМ --- */
-        .overlay-content {
-            background-image: 
-                radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 45%), 
-                radial-gradient(circle at 0% 100%, rgba(229, 62, 62, 0.03) 0%, transparent 45%),  
-                linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            
-            width: 92%;
-            max-width: 640px;
-            padding: 24px 40px 50px 40px; 
-            border-radius: 28px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0);
-            text-align: center;
-            position: relative;
-            border: 1px solid #e2e8f0;
-            transform: translateY(30px);
-            opacity: 0;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
-        }
-
-        .overlay.active .overlay-content {
-            transform: translateY(0);
-            opacity: 1;
-            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
-        }
-
-        /* ШАПКА БРАУЗЕРА */
-        .browser-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-            width: 100%;
-        }
-
-        /* КРУЖКИ УПРАВЛЕНИЯ ОКНОМ (MAC СТИЛЬ) */
-        .browser-dots {
-            display: flex;
-            gap: 8px;
-        }
-        .browser-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .dot-red { background-color: #ff5f56; }
-        .dot-yellow { background-color: #ffbd2e; }
-        .dot-green { background-color: #27c93f; }
-
-        /* КРЕСТИК ЗАКРЫТИЯ */
-        .close-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #a0aec0;
-            padding: 6px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.2s ease, background-color 0.2s ease;
-        }
-        .close-button:hover {
-            color: #4a5568;
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        /* ЛОГОТИП ПРИЛОЖЕНИЯ ПО ЦЕНТРУ */
-        .app-logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-        .app-logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-        }
-
-        /* СТИЛЬНЫЙ БЕЙДЖ ЭКОСИСТЕМЫ */
-        .recommended-badge {
-            display: inline-block;
-            color: #4a5568;
-            background: #f1f5f9;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-green);
             padding: 6px 16px;
             border-radius: 20px;
-            margin-bottom: 22px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .overlay-content h2 {
-            font-size: 29px;
-            font-weight: 720;
-            color: #1a202c;
-            margin-bottom: 12px;
-            letter-spacing: -0.8px;
-        }
-        
-        .subtitle {
-            font-size: 16px;
-            color: #4a5568;
-            line-height: 1.5;
-            max-width: 500px;
-            margin: 0 auto 35px auto;
-        }
-
-        /* СТРОЧНЫЕ ШАГИ */
-        .inline-steps {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 35px;
             font-size: 14px;
-            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.15);
+        }
+
+        h1 { 
+            font-size: 28px; 
+            margin-bottom: 8px; 
+            font-weight: 800; 
+            color: #0f172a;
+            letter-spacing: -0.5px;
+        }
+        .version { 
+            color: var(--text-muted); 
+            font-size: 14px; 
             font-weight: 500;
+            margin-bottom: 32px; 
         }
-        .inline-steps strong {
-            color: #1a202c;
-            font-weight: 700;
+
+        /* Changelog Section */
+        .changelog {
+            text-align: left;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
         }
-        .step-arrow {
-            color: #a0aec0;
-            font-size: 16px;
+        .changelog h3 { 
+            font-size: 15px; 
+            color: #0f172a; 
+            margin-bottom: 14px; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .changelog ul { list-style: none; }
+        .changelog li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 12px;
+            color: #334155;
+            font-size: 15px;
+        }
+        .changelog li:last-child { margin-bottom: 0; }
+        .changelog li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
             font-weight: bold;
+            font-size: 16px;
         }
 
-        /* КОНТЕЙНЕР ДЛЯ КНОПКИ И ПОДПИСИ ДОКАЗАТЕЛЬСТВА */
-        .cta-container {
+        /* Native Promo Block under changelog */
+        .native-promo {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 24px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 24px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(30, 41, 59, 0.04);
         }
-
-        /* СИНЯЯ ПУЛЬСИРУЮЩАЯ КНОПКА С МАСШТАБИРОВАНИЕМ */
-        .btn-cta {
-            display: inline-flex;
+        .promo-icon {
+            font-size: 36px;
+            background: rgba(37, 99, 235, 0.06);
+            padding: 12px;
+            border-radius: 16px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            background: #2563eb;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 16px 44px;
-            border-radius: 14px;
+        }
+        .promo-text h4 { font-size: 17px; margin-bottom: 4px; color: #0f172a; font-weight: 700; }
+        .promo-text p { color: var(--text-muted); font-size: 14px; margin-bottom: 14px; line-height: 1.5; }
+        .promo-btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
             text-decoration: none;
-            border: 1px solid #1d4ed8;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            animation: pulse-animation 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-        }
-        .btn-cta:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* СОЦИАЛЬНОЕ ДОКАЗАТЕЛЬСТВО ПОД КНОПКОЙ */
-        .social-proof-text {
-            font-size: 13px;
-            color: #718096;
+            padding: 9px 20px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .promo-btn:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+
+
+        /* ==========================================================================
+           ОБНОВЛЕННЫЕ И УЛУЧШЕННЫЕ СТИЛИ МОДАЛЬНОГО ОКНА (БОЛЬШЕ И КРАСИВЕЕ)
+           ========================================================================== */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.5); /* Чуть более темное размытие фона */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Более динамичная анимация */
+            z-index: 9999;
         }
+        .overlay.active { opacity: 1; visibility: visible; }
 
-        /* ИКОНКА CHROME WEB STORE ВНУТРИ КНОПКИ */
-        .web-store-icon {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-
-        /* Оживленная анимация пульсации (Тень + Легкое масштабирование до 1.03) */
-        @keyframes pulse-animation {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
-            }
-            50% {
-                transform: scale(1.03);
-                box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-            }
-        }
-
-        /* СТРОКА ХАРАКТЕРИСТИК */
-        .features-footer {
-            margin-top: 30px;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
-            font-size: 13px;
-            color: #718096;
-            font-weight: 500;
-            display: block;
+        .modal {
+            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 150px); /* Стильный светлый градиент */
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            width: 92%;
+            max-width: 530px; /* Увеличена ширина */
+            border-radius: 28px; /* Более мягкие углы */
+            padding: 44px 40px; /* Увеличены внутренние отступы */
             text-align: center;
+            position: relative;
+            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.2), 0 0 50px rgba(37, 99, 235, 0.05);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .features-footer span:not(:last-child)::after {
-            content: "•";
-            margin-left: 16px;
-            color: #cbd5e0;
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+
+        .close-btn {
+            position: absolute;
+            top: 20px; right: 24px;
+            background: rgba(15, 23, 42, 0.05);
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px; 
+            cursor: pointer;
+            line-height: 1;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .close-btn:hover { background: rgba(15, 23, 42, 0.1); color: var(--text-main); }
+
+        /* Иконка в красивом светящемся круге */
+        .modal-icon-container {
+            width: 84px;
+            height: 84px;
+            background: #ffffff;
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+        }
+        .modal-icon { font-size: 42px; line-height: 1; }
+
+        .modal h2 { 
+            font-size: 24px; 
+            margin-bottom: 12px; 
+            font-weight: 800; 
+            color: #0f172a; 
+            letter-spacing: -0.5px;
+        }
+        .modal p { 
+            color: var(--text-muted); 
+            font-size: 15.5px; 
+            margin-bottom: 32px; 
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+        
+        /* Увеличенная премиальная кнопка действия */
+        .cta-btn {
+            display: block;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+        }
+        .cta-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45); 
+        }
+        .cta-btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-<div class="main-changelog">
-    <h1 class="main-title"><span>✓</span>Successfully Updated to v1.3.2</h1>
-    <p class="main-subtitle">
-        The extension has been updated in your Chrome browser.<br>
-        Make sure to test its new capabilities. All core systems are running flawlessly.
-    </p>
-    
-    <ul class="features-list">
-        <li class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div class="feature-title">Engine Optimization</div>
-            <div class="feature-desc">Improved loading speed and script stability.</div>
-        </li>
-        <li class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div class="feature-title">Bug Fixes</div>
-            <div class="feature-desc">Resolved minor issues with memory usage in active tabs.</div>
-        </li>
-        <li class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div class="feature-title">Security Patch</div>
-            <div class="feature-desc">Enhanced internal manifest compliance.</div>
-        </li>
-    </ul>
-
-    <div class="bug-report-box">
-        <p class="bug-report-text">Found a bug or experiencing issues with this update? Please let us know so we can fix it immediately.</p>
-        <a href="mailto:" class="btn-report">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            Report an Issue
-        </a>
+    <!-- Точка 1: Верхняя плашка -->
+    <div class="top-bar" id="topBar" style="display:none;">
+        🔥 Security Alert: Protect your browser from malicious ads and tracking. <a href="#" class="smartlink-target" target="_blank">Get Protection Now</a>
     </div>
-</div>
 
-<div class="overlay" id="promoOverlay">
-    <div class="overlay-content">
-        
-        <div class="browser-header">
-            <div class="browser-dots">
-                <span class="browser-dot dot-red"></span>
-                <span class="browser-dot dot-yellow"></span>
-                <span class="browser-dot dot-green"></span>
+    <div class="container">
+        <!-- Главная нейтральная карточка обновления -->
+        <div class="header-card">
+            <div class="success-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                &nbsp;Successfully Updated
             </div>
-            <button class="close-button" id="closeOverlayBtn" aria-label="Close popup">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
+            <h1>Extension is Up to Date</h1>
+            <div class="version">Current Version: v2.4.1 • Status: Active and Running</div>
 
-        <div class="app-logo-container">
-            <img src="https://lh3.googleusercontent.com/gyeg8ncBQbguTsrPUp7PtBFE-3BOleUJRfjzTwKgJ4bIFp12tGoIlQclF0g8wCBVnqs0OMlRnbQvAc75Pm-R2_5s0Q=s120" alt="Extension Logo" class="app-logo">
-        </div>
-
-        <h2>Ultimate Shopping Companion</h2>
-        <p class="subtitle">
-            Help you identify trusted retailers, find hidden rewards, and avoid suspicious websites before you even click.
-        </p>
-
-        <div class="inline-steps">
-            <div>Step 1 — Click <strong>Add Extension</strong> below</div>
-            <div class="step-arrow">➔</div>
-            <div>Step 2 — Click <strong>Add to Chrome</strong></div>
-        </div>
-
-        <div class="cta-container">
-            <a href="https://cutt.ly/It72sWKQ" class="btn-cta">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Google_Chrome_Web_Store_icon_2022.svg/1280px-Google_Chrome_Web_Store_icon_2022.svg.png" alt="Chrome Web Store" class="web-store-icon">
-                Add Extension - It's free
-            </a>
-            <div class="social-proof-text">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38a169" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Trusted by over 20,000+ shoppers
+            <div class="changelog">
+                <h3>What's new in this version:</h3>
+                <ul>
+                    <li>Optimized background core script execution speed</li>
+                    <li>Fixed UI rendering glitches in specific browser themes</li>
+                    <li>Improved security manifest permissions and compliance</li>
+                    <li>Minor bug fixes and resource optimization</li>
+                </ul>
             </div>
         </div>
 
-        <div class="features-footer">
-            By installing the extension you agree to our <a href="https://smartsearcher.net/privacy-policy.html" target="_blank" style="color: #2563eb; text-decoration: underline;">Privacy Policy</a>.
+        <!-- Точка 2: Нативный промо-блок под списком изменений -->
+        <div class="native-promo" id="nativePromo" style="display:none;">
+            <div class="promo-icon">🛡️</div>
+            <div class="promo-text">
+                <h4>Recommended by Developers</h4>
+                <p>Enhance your daily browsing experience. Block annoying video ads, prevent popups, and secure your personal data in one click.</p>
+                <a href="#" class="promo-btn smartlink-target" target="_blank">Add It's Free</a>
+            </div>
         </div>
     </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const overlay = document.getElementById('promoOverlay');
-        const closeBtn = document.getElementById('closeOverlayBtn');
 
-        // Появление оверлея через 450мс
-        setTimeout(() => {
-            if (overlay) {
-                overlay.classList.add('active');
-            }
-        }, 450); 
+    <!-- Точка 3: Новое улучшенное модальное окно -->
+    <div class="overlay" id="promoOverlay">
+        <div class="modal">
+            <button class="close-btn" id="closeOverlayBtn">&times;</button>
+            <div class="modal-icon-container">
+                <div class="modal-icon">🚀</div>
+            </div>
+            <h2>Complete Your Setup</h2>
+            <p>To ensure a faster, cleaner, and completely uninterrupted browsing experience, we highly recommend adding our recommended Ad & Tracker blocker utility.</p>
+            <a href="#" class="cta-btn smartlink-target" target="_blank">Get it Free</a>
+        </div>
+    </div>
 
-        // Закрытие по клику на крестик
-        if (closeBtn && overlay) {
-            closeBtn.addEventListener('click', () => {
-                overlay.classList.remove('remove');
-                overlay.classList.remove('active');
+    <script>
+        // Ваша рабочая смартлинка из Zeydoo
+        const mySmartlink = 'https://nya5.com/link?z=11238925'; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('promoOverlay');
+            const closeBtn = document.getElementById('closeOverlayBtn');
+            const topBar = document.getElementById('topBar');
+            const nativePromo = document.getElementById('nativePromo');
+            
+            // Прописываем смартлинку Zeydoo во все 3 точки интеграции
+            const links = document.querySelectorAll('.smartlink-target');
+            links.forEach(link => {
+                link.href = mySmartlink;
             });
-        }
-    });
-</script>
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "687efcc2102b4ca8b11decb34bf1ddf4"}'></script>
+
+            // Сразу отображаем нативные текстовые блоки
+            if(topBar) topBar.style.display = 'block';
+            if(nativePromo) nativePromo.style.display = 'flex';
+
+            // УСКОРЕНО: Модалка открывается плавно через 600мс (почти сразу)
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.classList.add('active');
+                }
+            }, 600);
+
+            // Логика кнопки закрытия крестиком
+            if (closeBtn && overlay) {
+                closeBtn.addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
