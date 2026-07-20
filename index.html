@@ -3,363 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extension Updated Successfully</title>
+    <title>Update Successful</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg-color: #f4f7fa;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent-blue: #2563eb;
-            --accent-glow: rgba(37, 99, 235, 0.2);
-            --accent-green: #10b981;
-            --border-color: #e2e8f0;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #f4f7fa 70%);
-            color: var(--text-main);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
-        /* Top Notification Bar */
-        .top-bar {
-            background: linear-gradient(90deg, #2563eb, #3b82f6);
-            color: white;
-            text-align: center;
-            padding: 10px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
-        }
-        .top-bar a {
-            color: #fff;
-            text-decoration: underline;
-            font-weight: 700;
-            margin-left: 5px;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 650px;
-            width: 100%;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        /* Header Card */
-        .header-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 40px 32px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(30, 41, 59, 0.04);
-            margin-bottom: 24px;
-        }
-
-        .success-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(16, 185, 129, 0.08);
-            color: var(--accent-green);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(16, 185, 129, 0.15);
-        }
-
-        h1 { 
-            font-size: 28px; 
-            margin-bottom: 8px; 
-            font-weight: 800; 
-            color: #0f172a;
-            letter-spacing: -0.5px;
-        }
-        .version { 
-            color: var(--text-muted); 
-            font-size: 14px; 
-            font-weight: 500;
-            margin-bottom: 32px; 
-        }
-
-        /* Changelog Section */
-        .changelog {
-            text-align: left;
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 24px;
-        }
-        .changelog h3 { 
-            font-size: 15px; 
-            color: #0f172a; 
-            margin-bottom: 14px; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .changelog ul { list-style: none; }
-        .changelog li {
-            position: relative;
-            padding-left: 26px;
-            margin-bottom: 12px;
-            color: #334155;
-            font-size: 15px;
-        }
-        .changelog li:last-child { margin-bottom: 0; }
-        .changelog li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* Native Promo Block under changelog */
-        .native-promo {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 28px;
-            margin-top: 24px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            text-align: left;
-            box-shadow: 0 10px 25px rgba(30, 41, 59, 0.04);
-        }
-        .promo-icon {
-            font-size: 36px;
-            background: rgba(37, 99, 235, 0.06);
-            padding: 12px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .promo-text h4 { font-size: 17px; margin-bottom: 4px; color: #0f172a; font-weight: 700; }
-        .promo-text p { color: var(--text-muted); font-size: 14px; margin-bottom: 14px; line-height: 1.5; }
-        .promo-btn {
-            display: inline-block;
-            background: var(--accent-blue);
-            color: white;
-            text-decoration: none;
-            padding: 9px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .promo-btn:hover { background: #1d4ed8; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
-
-
-        /* ==========================================================================
-           ОБНОВЛЕННЫЕ И УЛУЧШЕННЫЕ СТИЛИ МОДАЛЬНОГО ОКНА (БОЛЬШЕ И КРАСИВЕЕ)
-           ========================================================================== */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.5); /* Чуть более темное размытие фона */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Более динамичная анимация */
-            z-index: 9999;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .overlay { opacity: 0; visibility: hidden; transition: 0.1s ease-out; }
         .overlay.active { opacity: 1; visibility: visible; }
-
-        .modal {
-            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 150px); /* Стильный светлый градиент */
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            width: 92%;
-            max-width: 530px; /* Увеличена ширина */
-            border-radius: 28px; /* Более мягкие углы */
-            padding: 44px 40px; /* Увеличены внутренние отступы */
-            text-align: center;
-            position: relative;
-            box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.2), 0 0 50px rgba(37, 99, 235, 0.05);
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .overlay.active .modal { transform: scale(1) translateY(0); }
-
-        .close-btn {
-            position: absolute;
-            top: 20px; right: 24px;
-            background: rgba(15, 23, 42, 0.05);
-            border: none;
-            color: var(--text-muted);
-            font-size: 22px; 
-            cursor: pointer;
-            line-height: 1;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        .close-btn:hover { background: rgba(15, 23, 42, 0.1); color: var(--text-main); }
-
-        /* Иконка в красивом светящемся круге */
-        .modal-icon-container {
-            width: 84px;
-            height: 84px;
-            background: #ffffff;
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px auto;
-        }
-        .modal-icon { font-size: 42px; line-height: 1; }
-
-        .modal h2 { 
-            font-size: 24px; 
-            margin-bottom: 12px; 
-            font-weight: 800; 
-            color: #0f172a; 
-            letter-spacing: -0.5px;
-        }
-        .modal p { 
-            color: var(--text-muted); 
-            font-size: 15.5px; 
-            margin-bottom: 32px; 
-            line-height: 1.6;
-            padding: 0 10px;
-        }
-        
-        /* Увеличенная премиальная кнопка действия */
-        .cta-btn {
-            display: block;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            text-decoration: none;
-            padding: 16px 32px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.2s ease;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
-        }
-        .cta-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45); 
-        }
-        .cta-btn:active {
-            transform: translateY(0);
-        }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6">
 
-    <!-- Точка 1: Верхняя плашка -->
-    <div class="top-bar" id="topBar" style="display:none;">
-        🔥 Security Alert: Protect your browser from malicious ads and tracking. <a href="#" class="smartlink-target" target="_blank">Get Protection Now</a>
+    <!-- 1. СТРАНИЦА ОБНОВЛЕНИЯ -->
+    <div class="max-w-2xl w-full text-center">
+        <div class="flex items-center justify-center gap-4 mb-6">
+            <div class="bg-green-100 text-green-600 p-2 rounded-full">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">Successfully Updated to v1.0.8</h1>
+        </div>
+        
+        <!-- Обновленный текст -->
+        <p class="text-lg text-slate-500 mb-8 leading-relaxed max-w-lg mx-auto">
+            The extension has been updated in your Chrome browser. Make sure to test its new capabilities. All core systems are running flawlessly.
+        </p>
+        
+        <!-- Обновленная ссылка на отчет об ошибке -->
+        <p class="text-sm text-slate-500">
+            Found a bug or experiencing issues with this update? 
+            <a href="mailto:support@yourdomain.com" class="text-[#3c6ed9] hover:underline font-semibold">Please let us know so we can fix it immediately.</a>
+        </p>
     </div>
 
-    <div class="container">
-        <!-- Главная нейтральная карточка обновления -->
-        <div class="header-card">
-            <div class="success-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                &nbsp;Successfully Updated
-            </div>
-            <h1>Extension is Up to Date</h1>
-            <div class="version">Current Version: v2.4.1 • Status: Active and Running</div>
+    <!-- 2. МОДАЛЬНОЕ ОКНО -->
+    <div id="modalOverlay" class="overlay fixed inset-0 z-50 flex items-center justify-center bg-slate-900/30 backdrop-blur-[2px] p-6">
+        <div class="bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] max-w-4xl w-full overflow-hidden rounded-xl relative">
+            
+            <button onclick="document.getElementById('modalOverlay').classList.remove('active')" class="absolute top-6 right-6 z-20 transition-colors" style="color: #3c6ed9;">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
 
-            <div class="changelog">
-                <h3>What's new in this version:</h3>
-                <ul>
-                    <li>Optimized background core script execution speed</li>
-                    <li>Fixed UI rendering glitches in specific browser themes</li>
-                    <li>Improved security manifest permissions and compliance</li>
-                    <li>Minor bug fixes and resource optimization</li>
-                </ul>
+            <div class="bg-blue-500 p-10 text-white relative overflow-hidden">
+                <div class="absolute -right-4 -top-4 opacity-10">
+                    <svg width="220" height="220" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="6" width="14" height="10" rx="2" /><rect x="8" y="2" width="14" height="10" rx="2" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold mb-3 relative z-10">Add Picture-in-Picture for Chrome</h2>
+                <p class="text-lg opacity-90 max-w-xl relative z-10">Watch videos from YouTube, Netflix, Twitch or Vimeo, and thousands of other websites in a floating window that always stays on top of other tabs and applications.</p>
             </div>
-        </div>
-
-        <!-- Точка 2: Нативный промо-блок под списком изменений -->
-        <div class="native-promo" id="nativePromo" style="display:none;">
-            <div class="promo-icon">🛡️</div>
-            <div class="promo-text">
-                <h4>Recommended by Developers</h4>
-                <p>Enhance your daily browsing experience. Block annoying video ads, prevent popups, and secure your personal data in one click.</p>
-                <a href="#" class="promo-btn smartlink-target" target="_blank">Add It's Free</a>
+            
+            <div class="p-10">
+                <p class="text-gray-600 mb-10 text-base">
+                    Clicking the Accept and Continue button will redirect you to the Chrome Web Store to install this extension. By installing the extension you agree to our 
+                    <a href="https://sites.google.com/view/pipmodes/privacy-policy" class="underline hover:text-blue-600 font-semibold">Privacy Policy.</a>
+                </p>
+                
+                <div class="flex items-center justify-between gap-8">
+                    <div class="flex items-center gap-4 shrink-0">
+                        <div class="w-14 h-14 flex items-center justify-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Google_Chrome_Web_Store_icon_2022.svg/1280px-Google_Chrome_Web_Store_icon_2022.svg.png" class="object-contain w-full h-full" alt="Store">
+                        </div>
+                        <div>
+                            <div class="text-[11px] text-gray-500 uppercase font-bold tracking-wider">Available in the</div>
+                            <div class="text-lg font-bold text-gray-800">Chrome Web Store</div>
+                        </div>
+                    </div>
+                    <a href="https://cutt.ly/8yr3G3Sk" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-10 transition-colors shadow-lg rounded-[10px] text-lg">
+                        ACCEPT AND CONTINUE
+                    </a>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Точка 3: Новое улучшенное модальное окно -->
-    <div class="overlay" id="promoOverlay">
-        <div class="modal">
-            <button class="close-btn" id="closeOverlayBtn">&times;</button>
-            <div class="modal-icon-container">
-                <div class="modal-icon">🚀</div>
-            </div>
-            <h2>Complete Your Setup</h2>
-            <p>To ensure a faster, cleaner, and completely uninterrupted browsing experience, we highly recommend adding our recommended Ad & Tracker blocker utility.</p>
-            <a href="#" class="cta-btn smartlink-target" target="_blank">Get it Free</a>
         </div>
     </div>
 
     <script>
-        // Ваша рабочая смартлинка из Zeydoo
-        const mySmartlink = 'https://nya5.com/link?z=11238925'; 
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('promoOverlay');
-            const closeBtn = document.getElementById('closeOverlayBtn');
-            const topBar = document.getElementById('topBar');
-            const nativePromo = document.getElementById('nativePromo');
-            
-            // Прописываем смартлинку Zeydoo во все 3 точки интеграции
-            const links = document.querySelectorAll('.smartlink-target');
-            links.forEach(link => {
-                link.href = mySmartlink;
-            });
-
-            // Сразу отображаем нативные текстовые блоки
-            if(topBar) topBar.style.display = 'block';
-            if(nativePromo) nativePromo.style.display = 'flex';
-
-            // УСКОРЕНО: Модалка открывается плавно через 600мс (почти сразу)
+        window.onload = () => {
             setTimeout(() => {
-                if (overlay) {
-                    overlay.classList.add('active');
-                }
-            }, 600);
-
-            // Логика кнопки закрытия крестиком
-            if (closeBtn && overlay) {
-                closeBtn.addEventListener('click', () => {
-                    overlay.classList.remove('active');
-                });
-            }
-        });
+                document.getElementById('modalOverlay').classList.add('active');
+            }, 100);
+        };
     </script>
+
+   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"67e80c9b834649118f1d1d4cb6b6a773"}'></script>
 </body>
 </html>
